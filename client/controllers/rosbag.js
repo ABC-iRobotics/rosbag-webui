@@ -239,6 +239,7 @@ ROSManager.controller('rosbag',["$templateCache",'$scope','$http','$location','$
         if (!(auth.auth)) $location.url('/signin');
 
         $scope.rosBagFilesPath = "/home/np164u3f/Develops/rosManager/bagfiles/";
+        $scope.aktROSbagFile = "";
         $scope.topics = [];
         $scope.nodes  = [];
         $scope.fullData  = [];
@@ -250,6 +251,7 @@ ROSManager.controller('rosbag',["$templateCache",'$scope','$http','$location','$
         $scope.chart = null;
         $scope.amChartData = [];
         $scope.startOffset =[];
+        
         try {
 
 
@@ -688,7 +690,7 @@ ROSManager.controller('rosbag',["$templateCache",'$scope','$http','$location','$
             beginData[key] = {"topic":key,"sec":value[0].timestamp.sec,"nsec":value[0].timestamp.nsec};
 
         });
-
+        $("#rosBagRawDataContener").html("<pre id=\"singleRawData\" style=\"color:#dae3ed;\">" + JSON.stringify(splitData[topics[0]][0].message,null,2)+ "</pre>");
         // console.log("OffsetTopic");
         // console.log(offsetTopic);
         // console.log("Kezedeti adatok!");
@@ -1043,6 +1045,8 @@ ROSManager.controller('rosbag',["$templateCache",'$scope','$http','$location','$
         try {
 
             var params = {file};
+            $scope.readROSBagFile = file.fullPath;
+            $scope.aktROSbagFile = file.fullPath;
             params.token = auth.token;
 
             var options = {
@@ -1098,12 +1102,69 @@ ROSManager.controller('rosbag',["$templateCache",'$scope','$http','$location','$
         }
 
     }
+    /**
+     * @description
+     */
+    $scope.PalyROSBagFile = function($event){
 
+        try {
+
+            if ($scope.aktROSbagFile=="") {
+                $("#msgModalTitle").html("Hiba");
+                var msg="<span class=\"hiba\">A fájl lejátszása sikertelen!<br>Hiba: nem választott ki fájlt!</span>";
+                $("#msgForm").html(msg);
+                $("#msgBtn").click()
+            }else{
+
+                var file = $scope.aktROSbagFile;
+                var params = {"file":file};
+                params.token = auth.token;
+    
+                var options = {
+                    "url": '/palyROSBagFile',
+                    "method": 'POST',
+                    "data":params,
+                    // "timeout":40000
+                };
+    
+                    
+                $http(options).then(function(response){
+                                
+                    $scope.fullData = response.data.data;
+                    if (response.data.state){
+                        $("#msgModalTitle").html("Üzenet");
+                        var msg="<span class=\"hiba\">"+response.data.msg+"</span>";
+                        $("#msgForm").html(msg);
+                        $("#msgBtn").click()
+                    } else {
+                        $("#msgModalTitle").html("Hiba");
+                        var msg="<span class=\"hiba\">A fájl lejátszása sikertelen!<br>"+response.data.msg+"</span>";
+                        $("#msgForm").html(msg);
+                        $("#msgBtn").click();
+                    }
+                },function(error){
+                    $("#msgModalTitle").html("Hiba");
+                    var msg="<span class=\"hiba\">A fájl lejátszása sikertelen!<br>"+error+"</span>";
+                    $("#msgForm").html(msg);
+                    $("#msgModalBtn").toggleClass("d-none");
+                    $("#msgBtn").click()
+                });
+
+            }
+
+        } catch (error) {
+            $("#msgModalTitle").html("Hiba");
+            var msg="<span class=\"hiba\">A fájl lejátszása sikertelen!<br>Hiba:"+error+"</span>";
+            $("#msgForm").html(msg);
+            $("#msgModalBtn").toggleClass("d-none");
+        }
+
+    }
     /**
      * @description
      */
     $scope.StartStopRecord = function($event){
-
+console.log("dasd");
         $event.stopPropagation();
         $event.stopImmediatePropagation();
         $event.cancelBubble = false;

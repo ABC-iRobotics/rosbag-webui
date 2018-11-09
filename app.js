@@ -282,6 +282,76 @@
   /**
    * @description 
    */
+  app.post('/palyROSBagFile',function(req,res,next){ 
+
+    if(debug){
+      console.log('Body');
+      console.log(req.body);
+      console.log('Params');
+      console.log(req.params);
+      console.log('query');
+      console.log(req.query);
+    }
+
+    try{
+
+      if(debug) logger.logWrite(true,'\r\n [x] startRecord lekérdezése:');
+      var promises =[];
+      var promise = null;
+      var response = {"state":false,"msg":"","data":{}};
+      promise  = ROSManager.palyROSBagFile(req.body.file);
+      promises.push(promise);
+  
+      setTimeout(function(){
+        promise = ROSManager.existsNode("/playROSbagFile");
+        promises.push(promise);
+      }, 1000);
+
+      Promise.all(promises).then(function(values){
+
+        var msgError = "";
+        var msg = "";
+        var data = {};
+        values.forEach(function(value) {
+          if (!value.state) {
+            msgError +="<br>"+value.msg;
+          }else{
+            msg = value.msg;
+            data = value.data;
+          } 
+        });
+
+        if (msgError!="") {
+          response = {"state":false,"msg":msgError,"data":{}};
+        } else {
+          response = {"state":true,"msg":msg,"data":data};  
+        }
+
+        res.statusCode = 200;
+        res.statusMessage = "[x] Az indítás siekres volt!";
+        res.send(response);
+        res.end();
+      });
+      
+       
+     } catch (error) {
+      
+      var response = {"state":false,"msg":error,"data":{}};
+      response.state = false;
+      response.msg = "[x] [x] Hiba volt az indítás során <br>"+error
+      response.data = {};
+      res.statusCode = 200;
+      res.statusMessage = "[x] [x] Hiba volt az indítás során <br>"+error;
+      res.send(response);
+      res.end();
+
+     }
+   
+  });
+
+  /**
+   * @description 
+   */
   app.post('/getTopicsNodes',function(req,res,next){
 
      try {
@@ -1314,10 +1384,11 @@
 
     logger.logWrite(true,'\r\n [x] Hiba:'+'Error:server is not running and not listening on '+PORT+'!');
     } else {
-      if(debug){
+        if(debug){
         console.log('Dirname:  ',__dirname);
         console.log('Filename: ',__filename);
         console.log('Server is running and listening  on:'+PORT);
+        console.log('Server is running and listening  on:'+HOST);
       }
     
     logger.logWrite(true,'\r\n [x] Sikeres:');

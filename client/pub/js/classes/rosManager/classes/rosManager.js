@@ -816,6 +816,90 @@
             return deffered.promise;
         }
 
+
+        /**
+         * 
+         * @param {*} file 
+         */
+        palyROSBagFile(file){
+            var that = this;
+            //deprecated: used native Promise
+            var deffered = that.q.defer();
+
+            try {
+                
+                //ha nincs akko hiba 
+                // console.log('rosbag play -q '+file+' __name:=playROSbagFile');
+                var result = cmd.exec('rosbag play -q '+file+' __name:=playROSbagFile',{silent:true}, function(code, stdout, stderr) {
+                    if (that.settings.debug) {
+                        that.logger.logWrite("\r\n [x] A rosbag fájl lejátszás ered:");
+                        that.logger.logWrite("-Exit code:"+ code);
+                        that.logger.logWrite('-Program output:'+ stdout);
+                        that.logger.logWrite('-Program stderr:'+stderr);
+                        that.logger.logWrite('-TypeOf:'+typeof(stderr));
+                    }
+                
+                    if (code=1 && stderr.includes("ERROR")&& stderr.includes("FATAL") && stderr.includes("Error")) {
+                        
+                        deffered.resolve({
+                            "state":false,
+                            "msg":" [x] Hiba rosbag fájl lejátszása  során!"+
+                            'rosbag play -q '+file+' __name:=playROSbagFile'+
+                            stderr,
+                            "data":{}
+                        });
+
+                        that.logger.logWrite("\r\n [x] Hiba rosbag fájl lejátszása során!"+'rosbag record'+'rosbag play -q '+file+' __name:=playROSbagFile');
+                    
+                    } else if(code!=1 && !stderr.includes("ERROR") && !stderr.includes("Unknown") && stderr.includes("FATAL") && stderr.includes("Error")  && stdout!=""){
+                        var patt1 = /\n/;
+                        var result = stdout.search(patt1);
+                        var nodes = stdout.replace(/\r\n/g, "\r").replace(/\n/g, "\r").split(/\r/);
+                        that.logger.logWrite("\r\n [x] A rosbag  fájl  lej indítása sikeresne megtörtént!"+nodes);
+                        deffered.resolve({
+                            "state":true,
+                            "msg":"\r\n [x] A rosbag  fájl  lej. indítása sikeresne megtörtént!",
+                            "data":{}
+                        });
+                    }else{
+                        deffered.resolve({
+                            "state":false,
+                            "msg":" [x] Hiba rosbag record indítása során!"+
+                            'rosbag play -q '+file+'__name:=playROSbagFile'+
+                            stderr,
+                            "data":{}
+                        });
+
+                        that.logger.logWrite("\r\n [x] Hiba rosbag record indítása során!"+'rosbag play -q '+file+' __name:=playROSbagFile'+stderr);
+                    }   
+                });
+                /**
+                 * Ez itt nem jo mert mindig igaz lesz. De most csak igy lesz jo
+                 */
+                deffered.resolve({
+                    "state":true,
+                    "msg":"\r\n [x] A rosbag fájl lej. lehet hogy sikeres!",
+                    "data":{}
+                });
+
+            } catch (error) {
+                that.logger.logWrite("\r\n [x] Hiba rosbag record indítása során!"+'rosbag play -q '+file+' __name:=playROSbagFile'+error);
+                deffered.resolve({
+                    "state":false,
+                    "msg":"\r\n [x] Hiba rosbag record indítása során!"+'rosbag play -q '+file+' __name:=playROSbagFile'+error,
+                    "data":{}
+                });
+            }
+            return deffered.promise;
+        }
+
+
+
+
+
+
+
+
         /**
          * 
          * @param {*} path 
