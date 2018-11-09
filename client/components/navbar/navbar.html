@@ -1,0 +1,25 @@
+<!--  Navbar  -->
+  {{auth.auth}}
+  <div class="container">
+    <!-- justify-content-start -->
+    <ul class="nav page-navigation justify-content-start" style="width:50%; float:left;"> 
+<!-- ha kell egy fix  hanincs felsőszegély -->
+      <!-- <li class="nav-item">
+        <a href="#/main_page" class="nav-link"><i class="link-icon icon-screen-desktop"></i><span class="menu-title">{{page_name}}</span></a>
+      </li> -->
+
+      <li ng-repeat="item in menu"  ng-class="{'active':isActive('{{item.link}}'), 'nav-item':true}">
+        <!-- <a href="pages/widgets.html" class="nav-link "><i class="link-icon icon-doc"></i><span class="menu-title">Topics</span></a> -->
+        <a ng-href="{{item.link}}" class="nav-link"><i  ng-class="{'link-icon':true, '{{item.icon}}':true,'active': isActive('{{item.link}}')}"></i><span class="menu-title">{{item.title}}</span></a>
+      </li>
+      
+    </ul>
+    <ul class="nav page-navigation justify-content-end" style="width:50%; float:right;"> 
+        <li class="nav-item ">
+            <a href="{{settings.link}}" class="nav-link" ><i class="link-icon {{settings.icon}}"></i><span class="menu-title">{{settings.content}}</span></a>
+          </li>
+      <!-- <li class="nav-item ">
+        <a href="{{logout.link}}" class="nav-link" ><i class="link-icon {{logout.icon}}"></i><span class="menu-title">{{logout.content}}</span></a>
+      </li> -->
+    </ul>
+  </div>

@@ -1,0 +1,280 @@
+/*BASE*/
+/*UZENET DIALOG CLOSE CSS*/
+.no-close .ui-dialog-titlebar-close {
+display: none;
+}
+.hide{
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    border:0;
+}
+.gomb{
+    width:120px;
+    text-align: center;
+    background: #428bca;
+    font: bold 12px Arial;
+    /*border-top-left-radius: 4px;*/
+    /*border-top-right-radius: 4px;*/
+    /*border-bottom-left-radius: 4px;*/
+    /*border-bottom-right-radius: 4px;*/
+}
+.disabled_gomb{
+    width:120px;
+    text-align: center;
+    background: #bab6b2;
+    font: bold 12px Arial;
+    /*border-top-left-radius: 4px;*/
+    /*border-top-right-radius: 4px;*/
+    /*border-bottom-left-radius: 4px;*/
+    /*border-bottom-right-radius: 4px;*/
+}
+.toggle_link{
+    text-decoration: underline;
+    color: rgb(50,50,200);
+    font-size: medium;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    }
+.toggle_down{
+    display: inline-block;
+    width:10px !important;
+    height: 10px !important;
+    background-image: url(../images/arrow_down.gif);
+    width:10px;
+    height: 10px;
+}
+.toggle_up{
+    display: inline-block;
+    width:10px !important;
+    height: 10px !important;
+    background-image: url(../images/arrow_up.gif);
+    width:10px;
+    height: 10px;
+}
+.color_red{
+    color:rgb(206, 0, 0) !important; 
+}
+.color_green{
+    color:rgb(6, 106, 14) !important; 
+}
+.hiba,.uzenet{
+    font:normal 2em Arial;
+    color:rgb(255,0,0);
+    font-size:  2em !important;
+}
+.uzenet{
+    font:bold 1.2em Arial;
+    color:rgb(255,0,0);
+    font-size:  1.2em !important;
+}
+
+
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+/*MODOSITO(karbantarto):UPDATE,INSERT,DELETE,VIEW*/
+.ui-widget-header {
+    border: 1px solid #dddddd;
+    background: rgba(51, 122, 183, 1) !important;
+    color: #333333;
+    font-weight: bold;
+}
+textarea{
+    overflow: hidden;
+}
+textarea[data-mandantory=true],input[data-mandantory=true],select[data-mandantory=true]{
+    border: 2px solid rgb(255,0,0) !important;
+}
+#vDialog{
+    padding: 0;
+    margin: 0;
+    max-width: 1024px !important;
+    width:auto !important;
+}
+#vDialog fieldset legend {
+    /*-moz-border-bottom-colors: none;*/
+    /*-moz-border-left-colors: none;*/
+    /*-moz-border-right-colors: none;*/
+    /*-moz-border-top-colors: none;*/
+    /*border-color: -moz-use-text-color -moz-use-text-color #e5e5e5;*/
+    border-image: none;
+    border-style: none none solid;
+    border-width: 0 0 2px;
+    /*color: #333;*/
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: inherit;
+    margin-bottom: 10px;
+    padding: 0;
+    width: auto;
+}
+#vDialog .v_label{
+    display:block;
+    min-width:150px;
+    /* max-width:260px; */
+    width:auto !important;
+    float:left;
+    font-size: 1em;
+    font-weight: bold;
+    padding-top: 6px;
+}
+/* 
+#vDialog div:not(#viewContener){
+} 
+*/
+#vDialog input:not(#modifyPassword):not(#cancelPassword),#vDialog select{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4285;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+/* textarea[data-mandantory=true],input[data-mandantory=true],select[data-mandantory=true]{ */
+#vDialog input[type=text],#vDialog select{
+    max-height:28px;
+    line-height: 10px;
+    font: bold 13px Arial !important;
+    width:100%;
+}
+#vDialog fieldset#userBaseData{
+    display: block;
+    max-width: 100% !important;
+    padding:20px 10px 20px 10px !important;
+    float:left;
+    min-height:215px;
+    height:auto !important;
+}
+#vDialog fieldset#userBaseData input[type=text],#vDialog fieldset#userBaseData select{
+    width:200px !important;
+}
+#vDialog fieldset#userBaseMData{
+    display: block;
+    max-width: 100% !important;
+    width:auto !important;
+    min-height:245px;
+    height:auto;
+    padding:0px 10px 20px 10px !important;
+    float:left;
+}
+#vDialog fieldset#userBaseMData input[type=text]{
+    max-height:28px;
+    line-height: 10px;
+    font: bold 10px Arial !important;
+    width:200px !important;
+}
+#vDialog fieldset#userPassword{
+    display: block;
+    max-width: 99,5% !important;
+    width:99,5% !important;
+    min-height:162px;
+    padding:0px 10px 20px 10px !important;
+    clear:left;
+    float:left;
+}
+#vDialog fieldset#userPassword input[type=password]{
+    max-height:28px;
+    line-height: 10px;
+    font: bold 13px Arial !important;
+    width:200px !important;
+}
+#vDialog fieldset#userPassword input[type=button]{
+    max-height:28px;
+    line-height: 10px;
+    font: bold 13px Arial !important;
+    width:200px !important;
+}
+#vDialog fieldset#userOther{
+    /* display: block;
+    float: left;
+    width:52% !important;
+    min-height:286px !important;
+    height:auto;
+    padding:20px 10px 20px 10px !important;
+     */
+     display: block;
+     max-width: 100% !important;
+     width:372px !important;
+     height:auto;
+     padding:0px 10px 20px 10px !important;
+     float:left;
+}
+
+#vDialog fieldset#userOther textarea{
+    width:100% !important;
+}
+div#label_{
+    display: none;
+    visibility: hidden;
+    width:0px;
+    height:0px;
+}
+#vDialog fieldset#egyeb_adatok{
+    min-height:250px !important;
+    height:auto !important;
+}
+
+/* .v_input{
+
+
+} */
+
+
+
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+/*DATATABLE*/
+table.dataTable{
+    /*width: 1024px !important;*/
+    white-space: normal !important;
+    width: 100% !important;
+}
+
+/*table.dataTable thead th {
+    font-weight: bold !important;
+    padding: 5px 8px !important;
+    font-size: 8pt !important;
+}*/
+table.dataTable thead th div{
+    font-weight: bold !important;
+    font-size: 10px !important;
+    white-space: normal !important;
+}
+
+table.dataTable tbody tr td {
+    font: bold 11px Arial !important;
+    /*white-space:  normal !important;*/
+    text-align: left;
+}
+
+.dataTables_wrapper{
+    display: block;
+    width: 100% !important;
+}
+
+/*COMBOBOX*/
+/* .custom-combobox-input{
+ width:auto !important;
+ min-width: 200px;
+} */
+.ui-autocomplete{
+ overflow: hidden;
+ z-index: 2000;
+}
+

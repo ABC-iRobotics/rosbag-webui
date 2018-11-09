@@ -1,0 +1,11 @@
+/* @import url("./bootstrap/bootstrap.min.css"); */
+/* @import url("./W3_CSS/w3_css_4.css"); */
+/* @import url("./jquery-ui-1-13-1/jquery-ui.css"); */
+/* @import url("./base.css"); */
+
+#navigationBar div[ng-include]{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+

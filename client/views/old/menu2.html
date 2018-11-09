@@ -1,0 +1,85 @@
+
+<!-- Szerver (Ping) -->
+<div class="panel panel-primary task w3-card flex-item-m">
+  <div class="panel-heading">Szerver (Ping)</div>
+  <div class="panel-body">
+    <div class="tsk_tabs">
+      <ul>
+        <li><a href="#tsk_ping_dashboard">Daschboard</a></li>
+        <li><a href="#tsk_ping_desc">Description</a></li>
+      </ul>
+      <div id="tsk_ping_dashboard" class="tsk_dashboard">
+
+        <fieldset class="main">
+          <legend>DashBoard</legend>
+          <ul class="sortable flex-contanier">
+            <li>
+              <fieldset>
+                  <div class="w3-container">
+                    <!-- W3 -->
+                    <div class="w3-card-4 tsk-item">
+                      <header class="w3-container w3-blue">
+                      <h6>&nbsp;</h6>
+                      </header>
+
+                      <div class="w3-container">
+                        <hr>
+
+                        <ul id="serversInfo" class="w3-ul w3-card-4 inform" >
+                          <img src="../pub/images/upload.png" class="loader"/>
+                        </ul>
+                        <hr>
+                      </div>
+
+                      <footer class="w3-container w3-blue">
+                        <div class="btn-group btn-group-justified">
+                            <button type="button" class="btn btn-primary btn_refress" ng-click="RefressServerInfo($event, $this)" ng-load="RefressServerInfo($event, $this)" id="refressServerInfo">Check</button>
+                            <!-- <input type='button' class="btn btn-primary" ng-click="RefressServerInfo($event, $this)" id="refressServerInfo" value='Ref.'/> -->
+                            <!-- <div class="btn-group"> -->
+                              <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              Task <span class="caret"></span></button>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Task1</a></li>
+                                <li><a href="#">Task2</a></li>
+                              </ul> -->
+                            <!-- </div> -->
+                        </div>
+                      </footer>
+                    </div>
+                  </div>
+              </fieldset>
+            </li>
+          </ul>
+        </fieldset><!--DashBoard-->
+      </div>
+
+      <div id="tsk_ping_desc">
+        <fieldset>
+          <legend>Description</legend>
+          <div class="w3-container">
+            ?????????????????
+          </div>
+        </fieldset>
+      </div>
+      <div class="tsk_ping_msg">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- W3 -->
+<!-- <div class="w3-card-4">
+  <header class="w3-container w3-blue">
+    <h3>PenCopy</h3>
+  </header>
+
+  <div class="w3-container">
+    <p>1 new friend request</p>
+    <hr>
+  </div>
+
+  <footer class="w3-container w3-blue">
+    <h5></h5>
+  </footer>
+</div>
+
+-->

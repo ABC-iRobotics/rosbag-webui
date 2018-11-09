@@ -1,0 +1,20 @@
+{
+  "name": "rosbag_test",
+  "version": "1.0.0",
+  "description": "rosbag test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rosbag"
+  ],
+  "author": "Nagy Péter",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "q": "^1.5.1",
+    "rosbag": "^1.2.1",
+    "shelljs": "^0.8.2"
+  }
+}

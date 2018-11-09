@@ -1,0 +1,20 @@
+.swal-modal {
+  background: $card-bg;
+  .swal-title,
+  .swal-text {
+    color: $body-color;
+  }
+  .swal-icon {
+    &:before,
+    &:after,
+    .swal-icon--success__hide-corners {
+      background: transparent;
+    }
+  }
+  .swal-content__input {
+    @extend .form-control;
+  }
+}
+.swal-overlay {
+  background: rgba($white, 0.06);
+}

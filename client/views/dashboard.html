@@ -1,0 +1,389 @@
+<div class="content-wrapper">
+    <!-- Row 1  -->
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card card-statistics">
+          <div class="card-body p-0">
+            <div class="row">
+<!-- Master -->
+              <div class="col-md-6 col-lg-3">
+                <div class="d-flex justify-content-between border-right card-statistics-item">
+                  <div>
+                    <h1>{{dashBoardParams.masters.master.length}}</h1>
+                    <p class="text-muted mb-0">Number of ROS Master</p>
+                  </div>
+                  <i class="{{dashBoardParams.masters.icon}} text-primary icon-lg"></i>
+                </div>
+              </div>
+<!-- Topics -->
+              <div class="col-md-6 col-lg-3">
+                <div class="d-flex justify-content-between border-right card-statistics-item">
+                  <div>
+                    <h1>{{dashBoardParams.topics.topic.length}}</h1>
+                    <p class="text-muted mb-0">Topics</p>
+                  </div>
+                  <i class="{{dashBoardParams.topics.icon}} text-primary icon-lg"></i>
+                </div>
+              </div>
+<!-- Nodes -->
+              <div class="col-md-6 col-lg-3">
+                <div class="d-flex justify-content-between border-right card-statistics-item">
+                  <div>
+                    <h1>{{dashBoardParams.nodes.node.length}}</h1>
+                    <p class="text-muted mb-0">Nodes</p>
+                  </div>
+                  <i class="{{dashBoardParams.nodes.icon}} text-primary icon-lg"></i>
+                </div>
+              </div>
+<!-- ROSBags -->
+              <div class="col-md-6 col-lg-3">
+                <div class="d-flex justify-content-between card-statistics-item">
+                  <div>
+                    <h1>{{dashBoardParams.rosBags.bag.length}}</h1>
+                    <p class="text-muted mb-0">ROS Bags</p>
+                  </div>
+                  <i class="{{dashBoardParams.rosBags.icon}} text-primary icon-lg"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Row 2  -->
+    <div class="row">
+      <div class="col-md-7 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body" style="height:150px; overflow-y: scroll;">
+            <h4 class="card-title">Ros Masters</h4>
+            <table class="table" >
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>ROS_MASTER_URI</th>
+                  <th>State</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in dashBoardParams.masters.master" >
+                  <td>
+                    <div class="disc bg-secondary"></div>
+                  </td>
+                  <td>
+                    <h4 class="text-primary font-weight-normal">{{item.ROS_MASTER_URI}}</h4>
+                    <p class="text-muted mb-0">{{item.description}}</p>
+                  </td>
+                  <td>
+                    <div class="badge {{((item.state)?'badge-succes':'badge-danger')}} badge-pill">{{((item.state)?"online":"ofline")}}</div>
+                  </td>
+                  <td>
+                     <button type="button" class="btn btn-primary btn-sm">
+                         <i class="{{((item.state)?'con-power':'icon-power' )}}"></i>
+                         {{((item.state)?'Stop':'Start')}}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body d-flex flex-column justify-content-between"><div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div>
+              <h4 class="card-title">ROS Master Chart</h4>
+              <h1>...</h1>
+              <p class="text-muted">...</p>
+            </div>
+            <canvas id="ros-chart" class="mt-auto chartjs-render-monitor" style="display: block;" width="403" height="201"></canvas> 
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Row3 -->
+    <div class="row">
+        <div class="col-md-7 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body" style="height:150px; overflow-y: scroll;">
+                <h4 class="card-title">Topics</h4>
+                <table class="table">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Topic</th>
+                    <th>Type</th>
+                    <th>State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in dashBoardParams.topics.topic" >
+                        <td>
+                            <div class="disc bg-secondary"></div>
+                        </td>
+                        <td>
+                            <h4 class="text-primary font-weight-normal">{{item.topicName}}</h4>
+                            <p class="text-muted mb-0">{{item.description}}</p>
+                        </td>
+                        <td>
+                            <h4 class="text-primary font-weight-normal">{{item.topicType}}</h4>
+                        </td>
+                        <td>
+                          <div class="badge {{((item.state)?'badge-succes':'badge-danger')}} badge-pill">{{((item.state)?"online":"ofline")}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-5 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body d-flex flex-column justify-content-between"><div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                <div>
+                <h4 class="card-title">Topic Chart</h4>
+                <h1>...</h1>
+                <p class="text-muted">...</p>
+                </div>
+                <canvas id="topic-chart" class="mt-auto chartjs-render-monitor" style="display: block;" width="403" height="201"></canvas> 
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- ROW4 -->
+    <div class="row">
+        <div class="col-md-7 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body" style="height:150px; overflow-y: scroll;">
+                <h4 class="card-title">Nodes</h4>
+                <table class="table">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Node</th>
+                    <th>State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in dashBoardParams.nodes.node" >
+                        <td>
+                            <div class="disc bg-secondary"></div>
+                        </td>
+                        <td>
+                            <h4 class="text-primary font-weight-normal">{{item.nodeName}}</h4>
+                            <p class="text-muted mb-0">{{item.description}}</p>
+                        </td>
+                        <td>
+                            <div class="badge {{((item.state)?'badge-succes':'badge-danger')}} badge-pill">{{((item.state)?"online":"ofline")}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-5 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body d-flex flex-column justify-content-between"><div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                <div>
+                <h4 class="card-title">Node Chart</h4>
+                <h1>...</h1>
+                <p class="text-muted">...</p>
+                </div>
+                <canvas id="topic-chart" class="mt-auto chartjs-render-monitor" style="display: block;" width="403" height="201"></canvas> 
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Activities</h4>
+            <div class="d-flex border-bottom pb-3">
+              <img src="https://via.placeholder.com/40x40" class="img-sm mr-4 rounded-circle" alt="profile">
+              <div>
+                <h6>Emily Kennedy</h6>
+                <p class="text-muted mb-0">Uploaded new invoices for RedBus and Paytm</p>
+              </div>
+            </div>
+            <div class="d-flex border-bottom py-3">
+              <img src="https://via.placeholder.com/40x40" class="img-sm mr-4 rounded-circle" alt="profile">
+              <div>
+                <h6>Nicholas Armstrong</h6>
+                <p class="text-muted mb-0">Created new work flow for the current project</p>
+              </div>
+            </div>
+            <div class="d-flex border-bottom py-3">
+              <img src="https://via.placeholder.com/40x40" class="img-sm mr-4 rounded-circle" alt="profile">
+              <div>
+                <h6>Stella Saunders</h6>
+                <p class="text-muted mb-0">Submitted the project schedule to the manager</p>
+              </div>
+            </div>
+            <div class="d-flex pt-3">
+              <img src="https://via.placeholder.com/40x40" class="img-sm mr-4 rounded-circle" alt="profile">
+              <div>
+                <h6>Noah Bailey</h6>
+                <p class="text-muted mb-0">Scheduled a meeting with the new client for next thursday</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Calendar</h4>
+            <div id="inline-datepicker-example" class="datepicker"><div class="datepicker datepicker-inline" style="display: block;"><div class="datepicker-days" style="display: block;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">November 2018</th><th class="next">»</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="old day" data-date="1540684800000">28</td><td class="old day" data-date="1540771200000">29</td><td class="old day" data-date="1540857600000">30</td><td class="old day" data-date="1540944000000">31</td><td class="day" data-date="1541030400000">1</td><td class="day" data-date="1541116800000">2</td><td class="today day" data-date="1541203200000">3</td></tr><tr><td class="day" data-date="1541289600000">4</td><td class="day" data-date="1541376000000">5</td><td class="day" data-date="1541462400000">6</td><td class="day" data-date="1541548800000">7</td><td class="day" data-date="1541635200000">8</td><td class="day" data-date="1541721600000">9</td><td class="day" data-date="1541808000000">10</td></tr><tr><td class="day" data-date="1541894400000">11</td><td class="day" data-date="1541980800000">12</td><td class="day" data-date="1542067200000">13</td><td class="day" data-date="1542153600000">14</td><td class="day" data-date="1542240000000">15</td><td class="day" data-date="1542326400000">16</td><td class="day" data-date="1542412800000">17</td></tr><tr><td class="day" data-date="1542499200000">18</td><td class="day" data-date="1542585600000">19</td><td class="day" data-date="1542672000000">20</td><td class="day" data-date="1542758400000">21</td><td class="day" data-date="1542844800000">22</td><td class="day" data-date="1542931200000">23</td><td class="day" data-date="1543017600000">24</td></tr><tr><td class="day" data-date="1543104000000">25</td><td class="day" data-date="1543190400000">26</td><td class="day" data-date="1543276800000">27</td><td class="day" data-date="1543363200000">28</td><td class="day" data-date="1543449600000">29</td><td class="day" data-date="1543536000000">30</td><td class="new day" data-date="1543622400000">1</td></tr><tr><td class="new day" data-date="1543708800000">2</td><td class="new day" data-date="1543795200000">3</td><td class="new day" data-date="1543881600000">4</td><td class="new day" data-date="1543968000000">5</td><td class="new day" data-date="1544054400000">6</td><td class="new day" data-date="1544140800000">7</td><td class="new day" data-date="1544227200000">8</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2018</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month focused">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2010-2019</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year focused">2018</span><span class="year">2019</span><span class="year new">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-decades" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2000-2090</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="decade old">1990</span><span class="decade">2000</span><span class="decade focused">2010</span><span class="decade">2020</span><span class="decade">2030</span><span class="decade">2040</span><span class="decade">2050</span><span class="decade">2060</span><span class="decade">2070</span><span class="decade">2080</span><span class="decade">2090</span><span class="decade new">2100</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-centuries" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch">2000-2900</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="century old">1900</span><span class="century focused">2000</span><span class="century">2100</span><span class="century">2200</span><span class="century">2300</span><span class="century">2400</span><span class="century">2500</span><span class="century">2600</span><span class="century">2700</span><span class="century">2800</span><span class="century">2900</span><span class="century new">3000</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-primary text-white card-update">
+          <div class="card-body">
+            <h4 class="card-title text-white">Updates</h4>
+            <div class="d-flex border-light-white pb-4 update-item">
+              <img src="https://via.placeholder.com/40x40" alt="profile" class="img-sm rounded-circle img-bordered mr-4">
+              <div>
+                <h6 class="text-white font-weight-medium d-flex">Aaron Tucker
+                  <span class="small ml-auto">8:30 AM</span>
+                </h6>
+                <p>New product is launched with high quality and awesome support. The product will be available for public within 4 days</p>
+                <div class="image-layers">
+                  <div class="profile-image-text bg-danger rounded-circle image-layer-item">S</div>
+                  <img class="rounded-circle image-layer-item" src="https://via.placeholder.com/20x20" alt="profile">
+                  <img class="rounded-circle image-layer-item" src="https://via.placeholder.com/20x20" alt="profile">
+                  <img class="rounded-circle image-layer-item" src="https://via.placeholder.com/20x20" alt="profile">
+                </div>
+              </div>
+            </div>
+            <div class="d-flex pt-4 update-item">
+              <img src="https://via.placeholder.com/40x40" alt="profile" class="img-sm rounded-circle img-bordered mr-4">
+              <div>
+                <h6 class="text-white font-weight-medium d-flex">Joseph Delgado
+                  <span class="small ml-auto">8:45 AM</span>
+                </h6>
+                <p>The test report is handed over to the production manager. The final decision will be based on the report. It will be announced in the meeting</p>
+                <div class="image-layers">
+                  <div class="profile-image-text bg-warning rounded-circle image-layer-item">M</div>
+                  <img class="rounded-circle image-layer-item" src="https://via.placeholder.com/20x20" alt="profile">
+                  <img class="rounded-circle image-layer-item" src="https://via.placeholder.com/20x20" alt="profile">
+                  <img class="rounded-circle image-layer-item" src="https://via.placeholder.com/20x20" alt="profile">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Todo list</h4>
+            <div class="add-items d-flex">
+              <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
+              <button class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+            </div>
+            <div class="list-wrapper">
+              <ul class="d-flex flex-column-reverse todo-list">
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked="">
+                      Call John
+                    <i class="input-helper"></i></label>
+                  </div>
+                  <i class="remove icon-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Create invoice
+                    <i class="input-helper"></i></label>
+                  </div>
+                  <i class="remove icon-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Print Statements
+                    <i class="input-helper"></i></label>
+                  </div>
+                  <i class="remove icon-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked="">
+                      Prepare for presentation
+                    <i class="input-helper"></i></label>
+                  </div>
+                  <i class="remove icon-close"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 grid-margin grid-margin-md-0 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Projects</h4>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="py-1">
+                    <img src="https://via.placeholder.com/40x40" alt="profile" class="img-sm rounded-circle">
+                  </td>
+                  <td>
+                    South Shyanne
+                  </td>
+                  <td>
+                    <label class="badge badge-warning">Medium</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-1">
+                    <img src="https://via.placeholder.com/40x40" alt="profile" class="img-sm rounded-circle">
+                  </td>
+                  <td>
+                      New Trystan
+                  </td>
+                  <td>
+                    <label class="badge badge-danger">High</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-1">
+                    <img src="https://via.placeholder.com/40x40" alt="profile" class="img-sm rounded-circle">
+                  </td>
+                  <td>
+                      East Helga
+                  </td>
+                  <td>
+                    <label class="badge badge-success">Low</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-1">
+                    <img src="https://via.placeholder.com/40x40" alt="profile" class="img-sm rounded-circle">
+                  </td>
+                  <td>
+                      Omerbury
+                  </td>
+                  <td>
+                    <label class="badge badge-warning">Medium</label>
+                  </td>
+                </tr>                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>

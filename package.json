@@ -1,0 +1,27 @@
+{
+  "name": "robot-restfulapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": ""
+  },
+  "keywords": [
+    "ros",
+    "rosbag",
+    "rosnode",
+    "rostopic"
+  ],
+  "author": "Nagy Péter",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cors-anywhere": "^0.4.1",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "npm-check": "^5.9.0",
+    "rosbag": "^1.2.1"
+  }
+}

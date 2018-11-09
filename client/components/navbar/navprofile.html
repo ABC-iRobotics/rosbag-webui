@@ -1,0 +1,25 @@
+<!-- PROFILE  -->
+<!-- ng-if="withAuthentication"  nav-profile ezzel directivat kell-->
+  <li  class="nav-item nav-profile dropdown" >
+    <a   class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+        <!-- <img src="https://via.placeholder.com/39x39" alt="profile"/> -->
+        <i class="link-icon icon-user"></i>
+        <span class="nav-profile-name">Guest</span>
+    </a>
+    <div  class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+        
+        <a class="dropdown-item">
+            <i class="icon-settings text-primary mr-2"></i>
+            Beállítások
+        </a>
+    
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" ng-click="logOut($event)">  
+            <i class="icon-logout text-primary mr-2"></i>
+            Kijelentkezés
+        </a>
+        
+    </div>
+  </li>
+
+

@@ -1,0 +1,22 @@
+.red-btn{
+    color:#c32f24 !important
+}
+
+.loaderTitle{
+
+    display:block;
+    color:#f5f0ef;
+    text-align:center;
+    font-size: 0.875rem;
+    text-shadow: #474747 3px 5px 2px;
+    font-weight: bold;
+}
+
+.loader{
+
+    border-radius: 0.25rem !important;
+    border-color: #af827c !important;
+    border:1px solid ;
+    
+
+}

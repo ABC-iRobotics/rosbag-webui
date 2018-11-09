@@ -1,0 +1,223 @@
+
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-7 grid-margin stretch-card">
+<!-- Controller -->
+      <div class="card btn-panel-card" >
+        <!-- card-body d-flex flex-column justify-content-between -->
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body" >
+          <h5 class="card-text">ROS Controller</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <!-- Control Buttons  ROSbag -->
+          <div id="btn-panel-contener">
+            <!-- FILE Open. -->
+            <!-- webkitdirectory=false multiple-->
+            <div class="form-group">
+                <label>File Op.</label>
+                <input type="file" name="file[]"  id="file-dialog" class="file-upload-default" >
+                <div class="input-group col-xs-12">
+                  <input type="text" class="form-control file-upload-info" disabled="" placeholder=" ROSbag file ..">
+                  <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button" style="height: 37px;">Open</button>
+                  </span>
+                </div>
+            </div>
+            <!-- FILE Open. -->
+            <div id="btn-panel">
+              <!-- data-toggle="modal" data-target="#rosbagRecordStartModal"  -->
+              <button type="button" id="rosbagRecordBtn" class="btn btn-icons btn-inverse-outline-primary" data-record=false ng-click="StartStopRecord($event)">
+                <i class="ti-control-record"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary">
+                <i class="ti-control-backward"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary">
+                  <i class="ti-control-skip-backward"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary">
+                  <i class="ti-control-play"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary">
+                    <i class="ti-control-stop"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary">
+                  <i class="ti-control-skip-forward"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary">
+                  <i class="ti-control-forward"></i>
+              </button>
+            </div>
+            <div class="d-none loader">
+              <p class="card-text loaderTitle" >A felvétel folyamatban!</p>
+              <div class="dot-opacity-loader" >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+          </div>
+          </div>
+          <!-- Control Buttons  ROSbag -->
+        </div>
+        <div class="card-body" >
+        <!-- Timeline -->
+        <div id="exportdiv"></div>
+        <div id="timelineChart" style="height:300px;"></div>		
+        <!-- & -->
+        </div>
+      </div>
+    </div>
+<!-- & -->
+<!-- Content -->
+    <div class="col-md-5 grid-margin stretch-card">
+      <div class="card">
+      <!-- card-body d-flex flex-column justify-content-between -->
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body" >
+            <h5 class="card-text">DATA (raw)</h5>
+            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            <!-- Control Buttons DATA (raw)  -->
+          <div id="btn-panel-contener">
+            <div id="btn-panel" data-index=0>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary" ng-click="back()" >
+                <i class="ti-control-backward"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary" ng-click="beginPosition()" >
+                  <i class="ti-control-skip-backward"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary" ng-click="endPosition" >
+                  <i class="ti-control-skip-forward"></i>
+              </button>
+              <button type="button" class="btn btn-icons btn-inverse-outline-primary" ng-click="next()" >
+                  <i class="ti-control-forward"></i>
+              </button>
+            </div>
+          </div>
+          <div id="rosBagRawDataContener">
+           
+          </div>
+          <!-- Control Buttons DATA (raw)  -->
+        </div>
+      </div>
+    </div>
+<!-- & -->
+  </div>
+<!-- Row2 -->
+<div class="row">
+  <div class="col-md-7 grid-margin stretch-card">
+    <div class="card">
+    <!-- card-body d-flex flex-column justify-content-between -->
+    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+      <div class="card-body" >
+        <h5 class="card-text">DATA (plot)</h5>
+    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      </div>
+    </div>
+  </div>
+
+<div class="col-md-5 grid-margin stretch-card">
+    <div class="card">
+    <!-- card-body d-flex flex-column justify-content-between -->
+      <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+      <div class="card-body" >
+          <h5 class="card-text">Plot data.</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Row3 -->
+
+
+<!-- MODAL Record Start-->
+<div class="text-center">
+  <button type="button"  id="starHBtn" id=""class="btn btn-primary btn-sm d-none"  data-toggle="modal" data-target="#rosbagRecordStartModal">Click for demo<i class="icon-control-play ml-1"></i></button>
+  <button type="button" id="stopHBtn" class="btn btn-primary btn-sm d-none" data-toggle="modal" data-target="#rosbagRecordStopModal">Click for demo<i class="icon-control-play ml-1"></i></button>
+  <button type="button" id="msgBtn" class="btn btn-primary btn-sm d-none" data-toggle="modal" data-target="#msgModal">Click for demo<i class="icon-control-play ml-1"></i></button>
+</div>
+
+<div class="modal fade" id="rosbagRecordStartModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="">....</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="rosbagStartRecordForm">
+            <!-- ROW1 -->
+              <div id="topicsNodesContener" class="row">
+              </div>
+<!-- ROW 2 -->
+              <div class="row">
+                  <div class="col-md-12" width>
+                  <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Fájlnév</label>
+                      <div class="col-sm-9">
+                      <input type="text" id="fileName" data-filename="" class="form-control" value="">
+                      </div>
+                  </div>
+                  </div>
+                  
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer ">
+        <button type="button"  class="btn btn-light" data-dismiss="modal" ng-click="startROSBagRecord($event)" >Ok</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">Mégse</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal" data-form="rosbagStartRecordForm" ng-click="resetForm($event)">Alaphelyzet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL Record Stop-->
+<div class="modal fade" id="rosbagRecordStopModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="recordModalTitle">Üzenet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- tartalom -->
+        <form id="rosbagStopRecordForm"></form>
+
+      </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-light" data-dismiss="modal" ng-click="stopROSBagRecord($event)" >Ok</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal">Mégse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  -->
+
+<!-- MODAL msg-->
+<div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="msgModalTitle" >Hiba</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- tartalom -->
+        <form id="msgForm"></form>
+
+      </div>
+        <div class="modal-footer">
+          <button type="button"   id="msgModalBtn" class="btn btn-light" data-dismiss="modal" >Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  -->
+</div>
+<!-- content -->

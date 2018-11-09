@@ -1,0 +1,407 @@
+<!--Bootstrap -->
+<!-- PenCopy -->
+<!-- <div id="button_p">
+  <input type="button"  id="getCall" value="Get Call"/>
+</div> -->
+<div class="panel panel-primary task w3-card flex-item-m" ng-init="init()">
+        <div class="panel-heading">Task Manager</div>
+        <div class="panel-body">
+          <div class="tsk_tabs">
+            <ul>
+              <li><a href="#tsk_pencopy_dashboard">Daschboard</a></li>
+              <li><a href="#tsk_pencopy_desc">Description</a></li>
+            </ul>
+            <div id="tsk_pencopy_dashboard" class="tsk_dashboard">
+              <fieldset class="main">
+                <!-- <legend>DashBoard</legend> -->
+                <legend>&nbsp;</legend>
+                <ul class="sortable flex-container">
+      
+                  <li class="tsk-item">
+                    <div class="w3-container">
+                      <!-- Task Item (W3) -->
+                      <div class="w3-card-4  flex-item">
+                        <header class="w3-container w3-blue">
+                        <!-- <h6>Kijelző</h6> -->
+                        </header>
+                        <div class="w3-container">
+                          <hr>
+                          <ul class="w3-ul w3-card-4 inform" id="task_contener">
+      
+                            <li data-queueid="DRT01_messages">
+                              <label>DRT01</label>
+                              <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_status" style="float:right">!</span><br>
+      
+                              <div class="btn-group btn-group btn-group-right">
+                                <!-- <button type="button" class="btn btn-primary" ng-click="" >Start</button>
+                                <button type="button" class="btn btn-primary">Stop</button> -->
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                  Log fájlok <span class="caret"></span></button>
+                                  <ul class="dropdown-menu" role="menu">
+                                    <li class="dd_button" ng-click="getLogContent($event, $this)" ><a href="#" data-process = "DRT" >DRT main log.</a></li>
+                                    <!-- <li class="dd_button"><a href="#">Lizard.</a></li> -->
+                                  </ul>
+                                </div>
+                              </div>
+      
+                              <!-- <span>Describe:?</span -->
+                              <hr>
+                              <div class='toggle_link' id="drt_details" > 
+                                Details &nbsp;
+                                <span class="w3-badge w3-red"><span class="toggle_down toggle_arrow"></span></span><br><br>
+                                <div class='task_details'>
+      
+      
+                                    <div class="queueData">
+                                      <div>
+                                        <div class="w3-large messageNumber">
+      
+                                            <span class="tsk-left" style="float:left;width:auto;font-size:0.9em;">Üzenetek száma (in/out):</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_in" style="float:left">0</span>
+                                            <span  style="float:left;width:auto;">/</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_out" style="float:left">0</span>
+      
+                                        </div><br>
+      
+                                        <div class="w3-large messageContent" >
+                                        </div><br>
+                                      </div>
+                                    </div>
+      
+                                    <!-- <hr>
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-primary btn_refress startProcess" ng-click="startProcess($event, $this)" ng-load="startProcess($event, $this); $event.stopPropagation();">Receive</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Send</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Log</button>
+                                    </div> -->
+      
+                                    <!-- <hr>
+                                    <div class="processData">
+                                      <div>
+                                         <span class="w3-large" class="ProcessMessage">Process message:  <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red  w3-right ">-</span></span><br> 
+                                        <div id="tsk_pencopy_progB" class="tsk_progressbar">
+                                          <fieldset>
+                                          <legend>Feldolgozva</legend>
+                                          <div class="w3-light-grey w3-round">
+                                            <div class="w3-container w3-blue w3-round" style="width:35%">25%</div>
+                                          </div><br>
+                                          </fieldset>
+                                        </div>
+                                      </div>
+                                    </div> -->
+                                    
+                                </div>
+                              </div> 
+                            </li>
+      
+      
+                            <li data-queueid="Oneroof_messages">
+                                <label>Oneroof_JSON</label>
+                                <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_status" style="float:right">!</span><br>
+                                <!-- <span>Describe:?</span -->
+                                <hr>
+                                <div class='toggle_link' id="drt_details" > 
+                                  Details &nbsp;
+                                  <span class="w3-badge w3-red"><span class="toggle_down toggle_arrow"></span></span><br><br>
+                                  <div class='task_details'>
+                                    
+      
+                                    
+                                    <div class="queueData">
+                                      <div>
+                                        <div class="w3-large messageNumber">
+      
+                                            <span class="tsk-left" style="float:left;width:auto;font-size:0.9em;">Üzenetek száma (in/out):</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_in" style="float:left">0</span>
+                                            <span  style="float:left;width:auto;">/</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_out" style="float:left">0</span>
+      
+                                        </div><br>
+                                        <span class="w3-large messageContent" >Content:<span>-</span></span><br>
+                                      </div>
+                                    </div>
+      
+                                    <!-- <hr>
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-primary btn_refress startProcess" ng-click="startProcess($event, $this)" ng-load="startProcess($event, $this); $event.stopPropagation();">Receive</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Send</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Log</button>
+                                    </div> -->
+                                      
+                                    <!-- <hr>
+                                    <div class="processData">
+                                      <div>
+                                        <div id="tsk_pencopy_progB" class="tsk_progressbar">
+                                          <fieldset>
+                                          <legend>Feldolgozva</legend>
+                                          <div class="w3-light-grey w3-round">
+                                            <div class="w3-container w3-blue w3-round" style="width:35%">25%</div>
+                                          </div><br>
+                                          </fieldset>
+                                        </div>
+                                      </div>
+                                    </div> -->
+      
+                                  </div>
+                                </div> 
+                              </li>
+      
+                              <li data-queueid="Loopers_messages">
+                                <label>Loopers_JSON</label> 
+                                <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_status" style="float:right">!</span><br>
+                                <!-- <span>Describe:?</span -->
+                                <hr>
+                                <div class='toggle_link' id="drt_details" > 
+                                  Details &nbsp;
+                                  <span class="w3-badge w3-red"><span class="toggle_down toggle_arrow"></span></span><br><br>
+                                  <div class='task_details'>
+      
+      
+                                    <div class="queueData">
+                                      <div>
+                                        <div class="w3-large messageNumber">
+      
+                                            <span class="tsk-left" style="float:left;width:auto;font-size:0.9em;">Üzenetek száma (in/out):</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_in" style="float:left">0</span>
+                                            <span  style="float:left;width:auto;">/</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_out" style="float:left">0</span>
+      
+                                        </div><br>
+                                        <span class="w3-large messageContent" >Content:<span>-</span></span><br>
+                                      </div>
+                                    </div>
+      
+                                    <!-- <hr>
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-primary btn_refress startProcess" ng-click="startProcess($event, $this)" ng-load="startProcess($event, $this); $event.stopPropagation();">Receive</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Send</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Log</button>
+                                    </div> -->
+                                    
+                                    <!-- <hr>
+                                    <div class="processData">
+                                      <div>
+                                        <div id="tsk_pencopy_progB" class="tsk_progressbar">
+                                          <fieldset>
+                                          <legend>Feldolgozva</legend>
+                                          <div class="w3-light-grey w3-round">
+                                            <div class="w3-container w3-blue w3-round" style="width:35%">25%</div>
+                                          </div><br>
+                                          </fieldset>
+                                        </div>
+                                      </div>
+                                    </div> -->
+      
+                                  </div>
+                                </div> 
+                              </li>
+      
+                              <li data-queueid="Lizard_messages">
+                                <label>Lizard feldolgozás</label> 
+                                <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_status" style="float:right">!</span><br>
+                                <!-- <span>Describe:?</span -->
+                                <hr>
+                                <div class='toggle_link' id="drt_details" > 
+                                  Details &nbsp;
+                                  <span class="w3-badge w3-red"><span class="toggle_down toggle_arrow"></span></span><br><br>
+                                  <div class='task_details'>
+      
+                                    <div class="queueData">
+                                      <div>
+                                        <div class="w3-large messageNumber">
+      
+                                            <span class="tsk-left" style="float:left;width:auto;font-size:0.9em;">Üzenetek száma (in/out):</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_in" style="float:left">0</span>
+                                            <span  style="float:left;width:auto;">/</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_out" style="float:left">0</span>
+      
+                                        </div><br>
+                                        <span class="w3-large messageContent" >Content:<span>-</span></span><br>
+                                      </div>
+                                    </div>
+      
+                                    <!-- <hr>
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-primary btn_refress startProcess" ng-click="startProcess($event, $this)" ng-load="startProcess($event, $this); $event.stopPropagation();">Receive</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Send</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Log</button>
+                                    </div> -->
+                                    
+                                    <!-- <hr>
+                                    <div class="processData">
+                                      <div>
+                                        <span class="w3-large" class="ProcessMessage">Process message:  <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red  w3-right ">-</span></span><br>
+                                        <div id="tsk_pencopy_progB" class="tsk_progressbar">
+                                          <fieldset>
+                                          <legend>Feldolgozva</legend>
+                                          <div class="w3-light-grey w3-round">
+                                            <div class="w3-container w3-blue w3-round" style="width:35%">25%</div>
+                                          </div><br>
+                                          </fieldset>
+                                        </div>
+                                      </div>
+                                    </div> -->
+                                    
+                                  </div>
+                                </div> 
+                              </li>
+      
+                              <li data-queueid="TDDATAFROMTMH_messages">
+                                <label>TD_DATA_FROM_TMH</label> 
+                                <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_status" style="float:right">!</span><br>
+                                <!-- <span>Describe:?</span -->
+                                <hr>
+                                <div class='toggle_link' id="drt_details" > 
+                                  Details &nbsp;
+                                  <span class="w3-badge w3-red"><span class="toggle_down toggle_arrow"></span></span><br><br>
+                                  <div class='task_details'>
+      
+                                    <div class="queueData">
+                                      <div>
+                                        <div class="w3-large messageNumber">
+      
+                                            <span class="tsk-left" style="float:left;width:auto;font-size:0.9em;">Üzenetek száma (in/out):</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_in" style="float:left">0</span>
+                                            <span  style="float:left;width:auto;">/</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_out" style="float:left">0</span>
+      
+                                        </div><br>
+      
+                                        <span class="w3-large messageContent" >Content:<span>-</span></span><br>
+                                      </div>
+                                    </div>
+      
+                                    <!-- <hr>
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-primary btn_refress startProcess" ng-click="startProcess($event, $this)" ng-load="startProcess($event, $this); $event.stopPropagation();">Receive</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Send</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Log</button>
+                                    </div> -->
+                                    
+                                    <!-- <hr>
+                                    <div class="processData">
+                                      <div>
+                                        <span class="w3-large" class="ProcessMessage">Process message:  <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red  w3-right ">-</span></span><br>
+                                        <div id="tsk_pencopy_progB" class="tsk_progressbar">
+                                          <fieldset>
+                                          <legend>Feldolgozva</legend>
+                                          <div class="w3-light-grey w3-round">
+                                            <div class="w3-container w3-blue w3-round" style="width:35%">25%</div>
+                                          </div><br>
+                                          </fieldset>
+                                        </div>
+                                      </div>
+                                    </div> -->
+      
+                                  </div>
+                                </div> 
+                              </li>
+      
+                              <li data-queueid="SOLR_messages">
+                                <label>SOLR CONTENT</label> 
+                                <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_status" style="float:right">!</span><br>
+                                <!-- <span>Describe:?</span -->
+                                <hr>
+                                <div class='toggle_link' id="drt_details" > 
+                                  Details &nbsp;
+                                  <span class="w3-badge w3-red"><span class="toggle_down toggle_arrow"></span></span><br><br>
+                                  <div class='task_details'>
+      
+                                    <div class="queueData">
+                                      <div>
+                                        <div class="w3-large messageNumber">
+                                            <span class="tsk-left" style="float:left;width:auto;font-size:0.9em;">Üzenetek száma (in/out):</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_in" style="float:left">0</span>
+                                            <span  style="float:left;width:auto;">/</span>
+                                            <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red tsk_msg_out" style="float:left">0</span>
+                                        </div><br>
+                                        <span class="w3-large messageContent" >Content:<span>-</span></span><br>
+                                      </div>
+                                    </div>
+      
+                                    <!-- <hr>
+                                    <div class="btn-group btn-group-justified">
+                                      <button type="button" class="btn btn-primary btn_refress startProcess" ng-click="startProcess($event, $this)" ng-load="startProcess($event, $this); $event.stopPropagation();">Receive</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Send</button>
+                                      <button type="button" class="btn btn-primary btn_refress sendMessage" ng-click="SendMessage($event, $this)" ng-load="SendMessage($event, $this); $event.stopPropagation();" >Log</button>
+                                    </div> -->
+                                    
+                                    <!-- <hr>
+                                    <div class="processData">
+                                      <div>
+                                        <span class="w3-large" class="ProcessMessage">Process message:  <span class="w3-bar-item w3-tag w3-padding w3-round-xlarge  w3-red  w3-right ">-</span></span><br>
+                                        <div id="tsk_pencopy_progB" class="tsk_progressbar">
+                                          <fieldset>
+                                          <legend>Feldolgozva</legend>
+                                          <div class="w3-light-grey w3-round">
+                                            <div class="w3-container w3-blue w3-round" style="width:35%">25%</div>
+                                          </div><br>
+                                          </fieldset>
+                                        </div>
+                                      </div>
+                                    </div> -->
+      
+                                  </div>
+                                </div> 
+                              </li>
+                          </ul>
+                        </div>
+                        <footer class="w3-container w3-blue">
+                          <!-- <div class="btn-group btn-group-justified"> -->
+                              <!-- <button type="button" class="btn btn-primary" ng-click="" >Start</button>
+                              <button type="button" class="btn btn-primary">Stop</button> -->
+                              <!-- <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Log fájlok <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li><a href="#">DRT.</a></li>
+                                  <li><a href="#">Lizard.</a></li>
+                                </ul>
+                              </div>-->
+                          <!-- </div>  -->
+                        </footer>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </fieldset><!--DashBoard-->
+              <!-- ProgressB. -->
+           
+            </div>
+            <div id="tsk_pencopy_desc">
+              <fieldset>
+                <legend>Description</legend>
+                <div class="w3-container">
+                  ?????????????????
+                </div>
+              </fieldset>
+            </div>
+            <div class="tsk_pencopy_msg">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      <!-- <li class="tsk-item">
+          <div class="w3-container"> -->
+          <!-- Task Item (W3) -->
+            <!-- <div class="w3-card-4  flex-item" >
+              <header class="w3-container w3-blue">
+              <h6>Státusz</h6>
+              </header>
+              <div class="w3-container">
+                <hr>
+                <p><span class="w3-tag w3-green status-tag">Standby</span></p>
+                <hr>
+              </div>
+              <footer class="w3-container w3-blue">
+              <h5></h5>
+              </footer>
+            </div>
+          </div>
+        </li> -->

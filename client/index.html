@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="ROSManager">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ROS Manager</title>
+    <!-- plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="./template/cloudUi/dark/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css">
+    <link rel="stylesheet" href="./template/cloudUi/dark/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="./template/cloudUi/dark/vendors/iconfonts/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="./template/cloudUi/dark/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="./template/cloudUi/dark/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="./pub/css/jquery-ui-1-12-1/jquery-ui.css" >
+    <link rel="stylesheet" href="./bower_components/amcharts3/amcharts/plugins/export/export.css" >
+    <link rel="stylesheet" href="./pub/css/datatables/dataTables.css">
+    <link rel="stylesheet" href="./template/cloudUi/dark/css/style.css">
+
+    <link rel="stylesheet" href="./pub/css/ROSManager.css" >
+    <!-- End plugin css for this page -->
+    <!-- endinject -->
+    <link rel="shortcut icon" href="./pub/images/rosfavicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+     <!-- partial:partials/_horizontal-navbar.html -->
+     <nav class="navbar horizontal-layout col-lg-12 col-12 p-0"    ng-controller="navController">
+      <!--Navigacio  -->
+      <div class="nav-top flex-grow-1">
+        <div class="container d-flex flex-row h-100">
+          <!-- Logo -->
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center">
+            <a class="navbar-brand brand-logo" href="index.html">
+              <span style="color: #fff;text-shadow: #474747 3px 5px 2px;font-weight:bold;background-image:url('./pub/images/rosfavicon.png'); background-repeat: no-repeat !important;background-position-x: 0;text-indent: 34px !important;left: 34px;display: block;">
+                ROS Manager
+              </span>
+            </a>
+            <a class="navbar-brand brand-logo-mini" href="index.html">
+              <span style="color: #fff;font-weight:bold;font-size:0.8em;text-shadow: #474747 3px 5px 2px;background-image:url('./pub/images/rosfavicon.png'); background-repeat: no-repeat !important;background-position-x: 0;background-size: 20px 20px;text-indent: 21px !important;display: inline-block; width:60px;">ROS </span>
+              <span style="color: #fff;font-weight:bold;font-size:0.8em;text-shadow: #474747 3px 5px 2px;position:relative;top:15px;left:-53px;">Manager</span>
+            </a>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between flex-grow-1">
+            <form class="search-field d-none d-md-flex" action="#" ng-if="withAuthentication && auth.auth" >
+              <div class="form-group mb-0">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-magnifier"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="keresés...">
+                </div>
+              </div>
+            </form>
+            <!--Nyelv:language selection -->
+            <ul class="navbar-nav navbar-nav-right mr-0 ml-auto" ng-if="withAuthentication && auth.auth">
+              <li class="nav-item dropdown d-none d-lg-flex nav-language">
+                <div class="nav-link">
+                  <span class="dropdown-toggle btn btn-sm" id="languageDropdown" data-toggle="dropdown">Hungarian
+                    <i class="flag-icon flag-icon-hu ml-2"></i>
+                  </span>
+                  <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item font-weight-medium">
+                      English
+                      <i class="flag-icon flag-icon-gb ml-2"></i>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item font-weight-medium">
+                      German
+                      <i class="flag-icon flag-icon-de ml-2"></i>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"></div>
+                  </div>
+                </div>
+              </li>
+              <!--Üzenetek:messages -->
+              <li class="nav-item dropdown">
+                <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                  <i class="icon-envelope mx-0"></i>
+                  <span class="count"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                  <div class="dropdown-item">
+                    <p class="mb-0 font-weight-normal float-left">Önnek egy üzenete van
+                    </p>
+                    <span class="badge badge-info badge-pill float-right">Összes megtekintése</span>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                        <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                    </div>
+                    <div class="preview-item-content flex-grow">
+                      <h6 class="preview-subject ellipsis font-weight-medium">Rendszer
+                        <span class="float-right font-weight-light small-text">1 perce</span>
+                      </h6>
+                      <p class="font-weight-light small-text">
+                        Az oldal sikeresen betöltődött
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </li>
+              <!-- Figyelmeztetesek:notifications -->
+              <li class="nav-item dropdown">
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                  <i class="icon-bell"></i>
+                  <span class="count"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                  <a class="dropdown-item py-3">
+                    <p class="mb-0 font-weight-medium float-left">Önnek egy üzenete van
+                    </p>
+                    <span class="badge badge-pill badge-info float-right">Összes megtekintése</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-success">
+                        <i class="icon-exclamation mx-0"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <h6 class="preview-subject font-weight-normal text-light mb-1">Sikeres indítás</h6>
+                      <p class="font-weight-light small-text mb-0">
+                        Pont most
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </li>
+              <!-- PROFILE  -->
+              <!-- ng-if="withAuthentication"  nav-profile ezzel directivat kell-->
+              <li  class="nav-item nav-profile dropdown" ng-controller = "navProfile" nav-profile>
+              </li>
+            </ul>
+            <button class="navbar-toggler align-self-center" style="float:right; margin:0 80%;" type="button" data-toggle="minimize">
+              <span class="icon-menu text-light"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    <!-- Navbar -->
+    <div class="nav-bottom" ng-controller="navController" id="navigationBar" nav-bar></div>
+    </nav>
+    <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+          <div class="content-wrapper" ng-view></div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="w-100 clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank"></a>. All rights reserved.</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="icon-heart text-danger"></i></span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!--JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- JavaScripts  -->
+    <!-- Plugin js for this page-->
+    <!-- plugins:js -->
+    <!-- inject:js -->
+    <!-- Cloud Ui template -->
+
+    <script src="./pub/js/jquery/jquery.js"></script>
+    <script src="./pub/js/jquery-ui-1-12-1/jquery-ui.js"></script>
+
+    <script src="./template/cloudUi/dark/vendors/js/vendor.bundle.base.js"></script>
+    <script src="./template/cloudUi/dark/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="./template/cloudUi/dark/js/template.js"></script>
+    <script src="./template/cloudUi/dark/js/file-upload.js"></script>
+    <script src="./template/cloudUi/dark/js/typeahead.js"></script>
+    <script src="./template/cloudUi/dark/js/select2.js"></script>
+    <script src="./template/cloudUi/dark/js/dashboard.js"></script>
+    <script src="./template/cloudUi/dark/js/todolist.js"></script>
+    <script src="./pub/js/popper/popper.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Armchart  -->
+    <script src="./bower_components/amcharts3/amcharts/amcharts.js"></script>
+    <script src="./bower_components/amcharts3/amcharts/serial.js"></script>
+    <script src="./bower_components/amcharts3/amcharts/gantt.js"></script>
+    <script src="./bower_components/amcharts3/amcharts/themes/light.js"></script>
+    <script src="./bower_components/amcharts3/amcharts/plugins/dataloader/dataloader.min.js"></script>
+    <script src="./bower_components/amcharts3/amcharts/plugins/export/export.min.js"></script>
+    <script src="./pub/js/base/alap.js"></script>
+    <!-- endinject -->
+    <!-- End plugin js for this page-->
+    <!-- ================================================== -->
+    <!-- Angular js -->
+    <!-- ================================================== -->
+    <!-- JavaScripts  -->
+    <!-- <script src="./bower_components/jquery/dist/jquery.js"></script> -->
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
+    <script src="./bower_components/angular-cookies/angular-cookies.js"></script>
+    <!-- <script src="./bower_components/angular-touch/angular-touch.js"></script> -->
+    <script src="./app.js"></script>
+    <script>
+      // $(function(){
+      //   $.getScript('./getLoggedUser.js',function(data, textStatus, jqxhr){
+      //     console.log("Betöltötte");
+      //   });
+
+      // });
+      // var WinNetwork  = new ActiveXObject("WScript.Network");
+      // window.loggedUser = WinNetwork.UserName;
+      // console.log("*************************");
+      // console.log( WinNetwork.UserName );
+      // console.log("*************************");
+      // console.log(window.loggedUser);
+      // window.getLoggedUser = function(){
+      //   return window.loggedUser;
+      // };
+      // $('li a ._disabled').on('click',function(e){
+      //   e.stopImmediatePropagation();
+      //   e.stopPropagation();
+      //   e.cancelBubble=true;
+      //   return false;
+      // });
+
+    </script>
+    <!-- Controller files  -->
+    <script src="/controllers/dashboard.js"></script>
+    <script src="/controllers/topics.js"></script>
+    <script src="/controllers/nodes.js"></script>
+    <script src="/controllers/rosbag.js"></script>
+    <script src="/controllers/settings.js"></script>
+    <script src="/controllers/navprofile.js"></script>
+    <script src="/controllers/navbar.js"></script>
+    <script src="/controllers/user.js"></script>
+    <script src="/controllers/users.js"></script>
+    <script src="/controllers/signin.js"></script>
+    <script src="/controllers/logout.js"></script>
+    <script src="./pub/js/datatables/dataTables.js"></script>
+    <!-- Controller files  -->
+  </body>
+</html>
